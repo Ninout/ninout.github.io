@@ -396,10 +396,20 @@
         .sobre-texto .t-out { color: var(--accent-2); font-weight: 600; }
 
         @media (max-width: 600px) {
-            .diagrama-lado { min-width: 80px; }
-            .diagrama-tag  { font-size: 1.25rem; }
-            .diagrama-centro { width: 64px; height: 64px; border-radius: 14px; }
-            .diagrama-centro img { width: 34px; height: 34px; }
+            .sobre-diagrama {
+                gap: 0;
+                overflow: hidden;
+            }
+            .diagrama-lado {
+                min-width: 0;
+                width: 56px;
+                flex-shrink: 0;
+            }
+            .diagrama-lado p { display: none; }
+            .diagrama-tag  { font-size: 1.1rem; }
+            .diagrama-trilho { min-width: 0; }
+            .diagrama-centro { width: 56px; height: 56px; border-radius: 12px; flex-shrink: 0; }
+            .diagrama-centro img { width: 30px; height: 30px; }
         }
 
         /* Instructor card */
