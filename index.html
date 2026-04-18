@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ninout — Treinamentos em IA e Agentes</title>
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-elev: #12121a;
+            --bg-card: #16161f;
+            --border: #23232e;
+            --text: #e8e8f0;
+            --text-muted: #8a8a9a;
+            --accent: #7c5cff;
+            --accent-2: #00d9b2;
+            --gradient: linear-gradient(135deg, #7c5cff 0%, #00d9b2 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: #0a0a0f !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 8rem 0 4rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 92, 255, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-tag span {
+            color: var(--accent-2);
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 1.75rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #0a0a0f;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 92, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-elev);
+            border-color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sobre */
+        .sobre {
+            background: var(--bg-elev);
+        }
+
+        .sobre-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sobre-diagrama {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 0;
+        }
+
+        .diagrama-lado {
+            min-width: 150px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .diagrama-lado p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .diagrama-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .diagrama-tag-in  { color: var(--accent); }
+        .diagrama-tag-out { color: var(--accent-2); }
+
+        .diagrama-trilho {
+            flex: 1;
+            height: 2px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .diagrama-trilho-in  { background: linear-gradient(90deg, rgba(124,92,255,0.15), rgba(124,92,255,0.5)); }
+        .diagrama-trilho-out { background: linear-gradient(90deg, rgba(0,217,178,0.5), rgba(0,217,178,0.15)); }
+
+        .diagrama-dot {
+            position: absolute;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .dot-in {
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+            animation: dot-in 1.8s var(--d, 0s) infinite ease-in-out;
+        }
+
+        .dot-out {
+            background: var(--accent-2);
+            box-shadow: 0 0 8px var(--accent-2);
+            animation: dot-out 1.8s var(--d, 0s) infinite ease-in-out;
+        }
+
+        @keyframes dot-in {
+            0%   { left: 0%;   opacity: 0; }
+            15%  { opacity: 1; }
+            85%  { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        @keyframes dot-out {
+            0%   { left: 0%;   opacity: 0; }
+            15%  { opacity: 1; }
+            85%  { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        .diagrama-centro {
+            width: 84px;
+            height: 84px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            animation: centro-pulse 3s ease-in-out infinite alternate;
+        }
+
+        .diagrama-centro::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 21px;
+            background: var(--gradient);
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes centro-pulse {
+            from { box-shadow: 0 0 20px rgba(124,92,255,0.25); }
+            to   { box-shadow: 0 0 45px rgba(0,217,178,0.35); }
+        }
+
+        .diagrama-centro img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+        }
+
+        .sobre-texto {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .sobre-texto strong      { color: var(--text); }
+        .sobre-texto .t-in  { color: var(--accent); font-weight: 600; }
+        .sobre-texto .t-out { color: var(--accent-2); font-weight: 600; }
+
+        @media (max-width: 600px) {
+            .diagrama-lado { min-width: 80px; }
+            .diagrama-tag  { font-size: 1.25rem; }
+            .diagrama-centro { width: 64px; height: 64px; border-radius: 14px; }
+            .diagrama-centro img { width: 34px; height: 34px; }
+        }
+
+        /* Meetups */
+        .meetups {
+            background: var(--bg);
+        }
+
+        .meetups-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meetups-status {
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            padding: 2rem 0;
+        }
+
+        .meetup-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .meetup-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .meetup-date {
+            text-align: center;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            min-width: 80px;
+        }
+
+        .meetup-date .day {
+            display: block;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-2);
+            line-height: 1;
+        }
+
+        .meetup-date .month {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-top: 0.25rem;
+        }
+
+        .meetup-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .meetup-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .meetup-info .meta {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .meetup-badge {
+            padding: 0.4rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .badge-online {
+            background: rgba(0, 217, 178, 0.15);
+            color: var(--accent-2);
+        }
+
+        .badge-presencial {
+            background: rgba(124, 92, 255, 0.15);
+            color: var(--accent);
+        }
+
+        .badge-gratuito {
+            background: rgba(37, 211, 102, 0.12);
+            color: #25d366;
+        }
+
+        /* Flashcards */
+        .flashcards {
+            background: var(--bg);
+        }
+
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .flashcards-status {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            padding: 2rem 0;
+        }
+
+        .flashcard-deck {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .flashcard-deck::before,
+        .flashcard-deck::after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            height: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            z-index: -1;
+            transition: all 0.3s;
+        }
+
+        .flashcard-deck::before {
+            bottom: -6px;
+            filter: brightness(0.85);
+        }
+
+        .flashcard-deck::after {
+            bottom: -11px;
+            left: 18px;
+            right: 18px;
+            filter: brightness(0.7);
+        }
+
+        .flashcard-deck:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .flashcard-deck:hover::before {
+            bottom: -8px;
+        }
+
+        .flashcard-deck:hover::after {
+            bottom: -14px;
+        }
+
+        .flashcard-deck-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .flashcard-tag {
+            padding: 0.2rem 0.65rem;
+            background: rgba(124, 92, 255, 0.12);
+            color: var(--accent);
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .flashcard-deck h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .flashcard-deck p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .flashcard-deck-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .flashcard-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .flashcard-count strong {
+            color: var(--accent-2);
+        }
+
+        .flashcard-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 1rem;
+            background: var(--gradient);
+            color: #0a0a0f;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .flashcard-download:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .flashcard-download-soon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 1rem;
+            background: var(--bg-elev);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: default;
+        }
+
+        /* Clube do Livro */
+        .clube-livro {
+            background: var(--bg-elev);
+        }
+
+        .livro-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .livro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .livro-card:hover {
+            border-color: var(--accent);
+        }
+
+        .livro-cover {
+            width: 140px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .livro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.85rem;
+            background: rgba(0, 217, 178, 0.15);
+            color: var(--accent-2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .livro-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: var(--accent-2);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .livro-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .livro-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-top: 1rem;
+        }
+
+        .livro-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-2);
+        }
+
+        @media (max-width: 600px) {
+            .livro-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .livro-cover {
+                width: 120px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Community */
+        .community {
+            background: var(--bg-elev);
+        }
+
+        .community-box {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-box::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .community-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(37, 211, 102, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .community-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: #25d366;
+        }
+
+        .community-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .community-box > p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            position: relative;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: #0a0a0f;
+            position: relative;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bf5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .community-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .community-perks span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .community-perks span::before {
+            content: '✓';
+            color: #25d366;
+            font-weight: 700;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: var(--bg);
+        }
+
+        .newsletter-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 178, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .newsletter-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .newsletter-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem 1.25rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .newsletter-perks span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .newsletter-perks span::before {
+            content: '✓';
+            color: var(--accent-2);
+            font-weight: 700;
+        }
+
+        .newsletter-msg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--accent-2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .newsletter-msg.visible {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer .logo {
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            display: block;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.25s;
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 57px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.97);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                z-index: 99;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 0.85rem 2rem;
+                font-size: 1rem;
+            }
+
+            .nav-links li:last-child {
+                padding: 0.75rem 2rem 0.25rem;
+            }
+
+            .nav-links li:last-child a.nav-cta {
+                display: block;
+                text-align: center;
+            }
+
+            .meetup-card {
+                grid-template-columns: auto 1fr;
+            }
+
+            .meetup-badge {
+                grid-column: 2;
+                justify-self: start;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-box {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#meetups">Meetups</a></li>
+                <li><a href="#clube-do-livro">Clube do Livro</a></li>
+                <li><a href="#flashcards">Flashcards</a></li>
+                <li><a href="#comunidade">Comunidade</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#comunidade" class="nav-cta">Entre no grupo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span>●</span> Comunidade aberta para 2026
+                </div>
+                <h1>
+                    Aprenda <span class="gradient-text">IA e Agentes</span><br>
+                    em comunidade
+                </h1>
+                <p class="hero-subtitle">
+                    Meetups, clube do livro e uma comunidade ativa de pessoas construindo
+                    com IA. Aprenda junto com quem já está colocando agentes em produção.
+                </p>
+                <div class="hero-actions">
+                    <a href="#comunidade" class="btn btn-primary">Entrar na comunidade →</a>
+                    <a href="#meetups" class="btn btn-secondary">Próximos meetups</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="sobre-wrapper">
+                <div class="sobre-diagrama">
+                    <div class="diagrama-lado">
+                        <span class="diagrama-tag diagrama-tag-in">IN</span>
+                        <p>ideias e dados</p>
+                    </div>
+                    <div class="diagrama-trilho diagrama-trilho-in">
+                        <span class="diagrama-dot dot-in" style="--d:0s"></span>
+                        <span class="diagrama-dot dot-in" style="--d:.6s"></span>
+                        <span class="diagrama-dot dot-in" style="--d:1.2s"></span>
+                    </div>
+                    <div class="diagrama-centro">
+                        <img src="logo.svg" alt="ninout">
+                    </div>
+                    <div class="diagrama-trilho diagrama-trilho-out">
+                        <span class="diagrama-dot dot-out" style="--d:.3s"></span>
+                        <span class="diagrama-dot dot-out" style="--d:.9s"></span>
+                        <span class="diagrama-dot dot-out" style="--d:1.5s"></span>
+                    </div>
+                    <div class="diagrama-lado">
+                        <span class="diagrama-tag diagrama-tag-out">OUT</span>
+                        <p>resultados e novas ideias</p>
+                    </div>
+                </div>
+                <p class="sobre-texto">
+                    <strong>ninout</strong> representa <span class="t-in">N entradas</span> que, ao passarem por um processo, geram <span class="t-out">saídas</span>. O <span class="t-in">IN</span> são as ideias e dados brutos que chegam. O <span class="t-out">OUT</span> são os resultados e novas ideias que emergem dessa transformação — o ciclo do aprendizado real.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="meetups" class="meetups">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// meetups</div>
+                <h2>Encontros da comunidade</h2>
+                <p class="section-subtitle">
+                    Eventos gratuitos com especialistas, estudos de caso e troca entre praticantes de IA.
+                </p>
+            </div>
+            <div class="meetups-list" id="meetupsList">
+                <p class="meetups-status" id="meetupsStatus">Carregando meetups…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="clube-do-livro" class="clube-livro">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// clube do livro</div>
+                <h2>Clube do Livro</h2>
+                <p class="section-subtitle">
+                    Leituras em grupo para aprofundar a teoria por trás dos sistemas de IA modernos.
+                </p>
+            </div>
+            <div class="livro-card">
+                <img class="livro-cover" src="https://m.media-amazon.com/images/I/81ohse7798L._SY425_.jpg" alt="Capa do livro Engenharia de IA">
+                <div class="livro-info">
+                    <div class="livro-badge">Leitura atual</div>
+                    <h3>Engenharia de IA: Construindo Aplicações com Modelos de Fundação</h3>
+                    <p>Uma leitura essencial para quem quer entender como construir aplicações robustas em cima de LLMs e outros modelos de fundação — desde arquiteturas de prompts até sistemas em produção.</p>
+                    <div class="livro-meta">
+                        <span>▸ 4 de maio — 1 de junho</span>
+                        <span>◷ Discussões às segundas · 20h00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flashcards" class="flashcards">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// flashcards</div>
+                <h2>Decks para a comunidade</h2>
+                <p class="section-subtitle">
+                    Decks de Anki com os conceitos mais importantes de IA e agentes, disponibilizados gratuitamente para a comunidade.
+                </p>
+            </div>
+            <div class="flashcards-grid" id="flashcardsGrid">
+                <p class="flashcards-status" id="flashcardsStatus">Carregando decks…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="comunidade" class="community">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// comunidade</div>
+                <h2>Entre na nossa comunidade</h2>
+                <p class="section-subtitle">
+                    Grupo no WhatsApp para trocar experiências, tirar dúvidas e receber avisos de meetups em primeira mão.
+                </p>
+            </div>
+            <div class="community-box">
+                <div class="community-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                </div>
+                <h3>Grupo ninout no WhatsApp</h3>
+                <p>Converse com outros aprendizes e praticantes, compartilhe projetos, receba recomendações de conteúdo e avisos exclusivos.</p>
+                <a href="https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    Entrar no grupo do WhatsApp
+                </a>
+                <div class="community-perks">
+                    <span>Comunidade ativa</span>
+                    <span>Sem spam</span>
+                    <span>Moderação presente</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// newsletter</div>
+                <h2>Fique por dentro</h2>
+                <p class="section-subtitle">
+                    Uma curadoria semanal sobre IA, agentes e novas ferramentas — sem ruído, sem hype e sem gente emocionada. Sua fonte de informação atualizada para não sentir FOMO.
+                </p>
+            </div>
+            <div class="newsletter-box">
+                <h3>Receba a ninout semanal</h3>
+                <p>Papers, ferramentas, e práticas do mundo real entregues toda quarta-feira.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="seu@email.com" required>
+                    <button type="submit" class="btn btn-primary">Inscrever</button>
+                </form>
+                <div class="newsletter-msg" id="newsletterMsg">✓ Pronto! Confira sua caixa de entrada.</div>
+                <div class="newsletter-perks">
+                    <span>Conteúdo original</span>
+                    <span>Sem spam</span>
+                    <span>Cancele quando quiser</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="#" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <ul class="footer-links">
+                <li><a href="#meetups">Meetups</a></li>
+                <li><a href="#clube-do-livro">Clube do Livro</a></li>
+                <li><a href="#flashcards">Flashcards</a></li>
+                <li><a href="#comunidade">Comunidade</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+            <p>© 2026 ninout · Treinamentos em IA e Agentes</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('navHamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        const form = document.getElementById('newsletterForm');
+        const msg = document.getElementById('newsletterMsg');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            msg.classList.add('visible');
+            form.reset();
+            setTimeout(() => msg.classList.remove('visible'), 4000);
+        });
+
+        const MONTHS_PT = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, (c) => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+        }
+
+        function renderMeetup(m) {
+            const d = new Date(m.date);
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = MONTHS_PT[d.getMonth()];
+            const time = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            const modeClass = m.mode === 'online' ? 'badge-online' : 'badge-presencial';
+            const modeLabel = m.mode === 'online' ? 'Online' : 'Presencial';
+            return `
+                <div class="meetup-card">
+                    <div class="meetup-date">
+                        <span class="day">${day}</span>
+                        <span class="month">${escapeHtml(month)}</span>
+                    </div>
+                    <div class="meetup-info">
+                        <h3>${escapeHtml(m.title)}</h3>
+                        <p>${escapeHtml(m.description)}</p>
+                        <div class="meta mono">${escapeHtml(time)} · ${escapeHtml(m.location)}</div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end">
+                        <span class="meetup-badge ${modeClass}">${modeLabel}</span>
+                        <span class="meetup-badge badge-gratuito">Gratuito</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadMeetups() {
+            const list = document.getElementById('meetupsList');
+            const status = document.getElementById('meetupsStatus');
+            try {
+                const res = await fetch('meetups.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const meetups = await res.json();
+                if (!Array.isArray(meetups) || meetups.length === 0) {
+                    status.textContent = 'Nenhum meetup agendado no momento.';
+                    return;
+                }
+                meetups.sort((a, b) => new Date(a.date) - new Date(b.date));
+                list.innerHTML = meetups.map(renderMeetup).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os meetups.';
+                console.error(err);
+            }
+        }
+
+        loadMeetups();
+
+        function renderDeck(d) {
+            const tags = (d.tags || []).map(t => `<span class="flashcard-tag">${escapeHtml(t)}</span>`).join('');
+            const tagsBlock = tags ? `<div class="flashcard-deck-tags">${tags}</div>` : '';
+            const action = d.download
+                ? `<a href="${escapeHtml(d.download)}" class="flashcard-download" target="_blank" rel="noopener noreferrer">↓ Baixar deck</a>`
+                : `<span class="flashcard-download-soon">em breve</span>`;
+            return `
+                <div class="flashcard-deck">
+                    ${tagsBlock}
+                    <h3>${escapeHtml(d.title)}</h3>
+                    <p>${escapeHtml(d.description)}</p>
+                    <div class="flashcard-deck-footer">
+                        <span class="flashcard-count"><strong>${escapeHtml(String(d.cards))}</strong> cards</span>
+                        ${action}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadFlashcards() {
+            const grid = document.getElementById('flashcardsGrid');
+            const status = document.getElementById('flashcardsStatus');
+            try {
+                const res = await fetch('flashcards.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const decks = await res.json();
+                if (!Array.isArray(decks) || decks.length === 0) {
+                    status.textContent = 'Nenhum deck disponível no momento.';
+                    return;
+                }
+                grid.innerHTML = decks.map(renderDeck).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os decks.';
+                console.error(err);
+            }
+        }
+
+        loadFlashcards();
+    </script>
+</body>
+</html>

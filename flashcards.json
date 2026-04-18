@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Fundamentos de LLMs",
+    "description": "Conceitos essenciais sobre large language models: tokenização, atenção, temperatura, contexto e os principais termos do campo.",
+    "cards": 80,
+    "tags": ["LLMs", "Fundamentos"],
+    "download": null
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "date": "2026-04-30T20:00:00-03:00",
+    "title": "Observabilidade de LLMs com Langfuse",
+    "description": "Como instrumentar, rastrear e avaliar aplicações LLM em produção usando Langfuse — traces, sessions, evals e dashboards.",
+    "location": "Remoto",
+    "mode": "online"
+  }
+]

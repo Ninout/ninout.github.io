@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Produtividade com Claude Desktop",
+    "description": "Acelere seu workflow com o Claude Desktop: automação de tarefas, uso de MCP, integrações com suas ferramentas e práticas para incorporar IA no seu dia a dia.",
+    "icon": "https://cdn.simpleicons.org/claude/D97757",
+    "level": "iniciante",
+    "hours": 12,
+    "modules": 4,
+    "format": "Online",
+    "status": "em-desenvolvimento",
+    "instructor": {
+      "name": "Vitor Fraga",
+      "bio": "Engenheiro de software com mais de uma década de experiência construindo produtos digitais. Atua com IA aplicada, agentes e automação para equipes de engenharia.",
+      "photo": "https://media.licdn.com/dms/image/v2/D4D03AQFqee9a3ch2cA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715734656817?e=1778112000&v=beta&t=7kcGIcHlZtidzLYcvdnmILPfpWN_z-1_boFZyXrMfAg",
+      "linkedin": "https://www.linkedin.com/in/vitor-fraga",
+      "instagram": "https://www.instagram.com/xvitorfraga"
+    }
+  }
+]
