@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ninout — Treinamentos em IA e Agentes</title>
+    <title>ninout — Comunidade, Educação e P&D em IA</title>
     <link rel="icon" href="logo.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,6 +90,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -115,6 +116,93 @@
         .nav-cta:hover {
             opacity: 0.9;
             transform: translateY(-1px);
+        }
+
+        /* Nav dropdown */
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--text);
+        }
+
+        .nav-dropdown-toggle .chevron {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .nav-item:hover .chevron,
+        .nav-item.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            min-width: 180px;
+            z-index: 200;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 10px;
+            height: 10px;
+            background: var(--bg-elev);
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+
+        .nav-item:hover .nav-dropdown,
+        .nav-item.open .nav-dropdown {
+            display: block;
+        }
+
+        .nav-dropdown a {
+            display: block;
+            padding: 0.6rem 0.85rem;
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown a:hover {
+            color: var(--text);
+            background: var(--bg-card);
         }
 
         /* Hero */
@@ -412,6 +500,78 @@
             .diagrama-centro img { width: 30px; height: 30px; }
         }
 
+        /* Pillars grid */
+        .sobre-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin: 3rem 0 0;
+            text-align: left;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.25s;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .pillar-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .pillar-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-2);
+            margin-bottom: 0.35rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .pillar-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .pillar-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.85rem;
+        }
+
+        .pillar-item {
+            padding: 0.2rem 0.6rem;
+            background: var(--bg-elev);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .sobre-pillars {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Instructor card */
         .sobre-instructor {
             display: flex;
@@ -627,9 +787,476 @@
             color: #25d366;
         }
 
+        /* Clube do Livro */
+        .clube-livro {
+            background: var(--bg-elev);
+        }
+
+        .livro-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .livro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .livro-card:hover {
+            border-color: var(--accent);
+        }
+
+        .livro-cover {
+            width: 140px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .livro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.85rem;
+            background: rgba(0, 217, 178, 0.15);
+            color: var(--accent-2);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .livro-badge::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: var(--accent-2);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .livro-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .livro-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-top: 1rem;
+        }
+
+        .livro-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-2);
+        }
+
+        @media (max-width: 600px) {
+            .livro-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .livro-cover {
+                width: 120px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Community / Grupos */
+        .community {
+            background: var(--bg);
+        }
+
+        .community-box {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-box::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .community-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(37, 211, 102, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .community-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: #25d366;
+        }
+
+        .community-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .community-box > p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            position: relative;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+            color: #0a0a0f;
+            position: relative;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bf5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .community-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .community-perks span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .community-perks span::before {
+            content: '✓';
+            color: #25d366;
+            font-weight: 700;
+        }
+
+        /* Bio streaming animation */
+        .ee-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: var(--accent-2);
+            vertical-align: text-bottom;
+            margin-left: 1px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .ee-error {
+            display: none;
+            margin-top: 1.75rem;
+            padding: 0.45rem 0.75rem;
+            background: rgba(248,81,73,0.1);
+            border: 1px solid rgba(248,81,73,0.25);
+            border-radius: 6px;
+            color: #f85149;
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .ee-error.visible { display: block; }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: var(--bg-elev);
+        }
+
+        .newsletter-box {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 178, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .newsletter-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .newsletter-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.75rem;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem 1.25rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .newsletter-perks span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .newsletter-perks span::before {
+            content: '✓';
+            color: var(--accent-2);
+            font-weight: 700;
+        }
+
+        .newsletter-msg {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--accent-2);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .newsletter-msg.visible {
+            opacity: 1;
+        }
+
+        /* Cursos */
+        .cursos {
+            background: var(--bg);
+        }
+
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cursos-status {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            padding: 2rem 0;
+        }
+
+        .curso-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .curso-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--gradient);
+        }
+
+        .curso-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(124, 92, 255, 0.15);
+        }
+
+        .curso-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .curso-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: var(--bg-elev);
+            padding: 4px;
+            flex-shrink: 0;
+        }
+
+        .curso-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.35rem;
+        }
+
+        .curso-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .curso-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .curso-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.65rem;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .badge-em-desenvolvimento {
+            background: rgba(124, 92, 255, 0.15);
+            color: var(--accent);
+        }
+
+        .badge-disponivel {
+            background: rgba(0, 217, 178, 0.15);
+            color: var(--accent-2);
+        }
+
+        .curso-instructor {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: auto;
+        }
+
+        .curso-instructor-photo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .curso-instructor-name {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
         /* Flashcards */
         .flashcards {
-            background: var(--bg);
+            background: var(--bg-elev);
         }
 
         .flashcards-grid {
@@ -777,342 +1404,160 @@
             cursor: default;
         }
 
-        /* Clube do Livro */
-        .clube-livro {
-            background: var(--bg-elev);
+        /* papagali.ai — P&D */
+        .papagali {
+            background: var(--bg);
         }
 
-        .livro-card {
-            max-width: 800px;
+        .papagali-inner {
+            max-width: 860px;
             margin: 0 auto;
+        }
+
+        .papagali-hero-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 2.5rem;
-            align-items: start;
+            border-radius: 24px;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
-            transition: border-color 0.3s;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2.5rem;
+            align-items: center;
         }
 
-        .livro-card::before {
+        .papagali-hero-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: -60%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,217,178,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .papagali-hero-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
             height: 2px;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
         }
 
-        .livro-card:hover {
-            border-color: var(--accent);
-        }
-
-        .livro-cover {
-            width: 140px;
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            flex-shrink: 0;
-        }
-
-        .livro-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.3rem 0.85rem;
-            background: rgba(0, 217, 178, 0.15);
-            color: var(--accent-2);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
+        .papagali-label {
             font-family: 'JetBrains Mono', monospace;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .livro-badge::before {
+        .papagali-label::before {
             content: '';
             width: 7px;
             height: 7px;
             background: var(--accent-2);
             border-radius: 50%;
-            display: inline-block;
+            flex-shrink: 0;
+            animation: papagali-pulse 2s ease-in-out infinite;
         }
 
-        .livro-info h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
+        @keyframes papagali-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
-        .livro-info p {
+        .papagali-title {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .papagali-desc {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.65;
-            margin-top: 1rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
         }
 
-        .livro-meta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--border);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-2);
-        }
-
-        @media (max-width: 600px) {
-            .livro-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .livro-cover {
-                width: 120px;
-                margin: 0 auto;
-            }
-        }
-
-        /* Community */
-        .community {
-            background: var(--bg-elev);
-        }
-
-        .community-box {
-            max-width: 720px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .community-box::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            left: -20%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(37, 211, 102, 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .community-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: rgba(37, 211, 102, 0.15);
+        .papagali-status-tag {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            position: relative;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 178, 0.08);
+            border: 1px solid rgba(0, 217, 178, 0.2);
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent-2);
         }
 
-        .community-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: #25d366;
-        }
-
-        .community-box h3 {
-            font-size: 1.75rem;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-
-        .community-box > p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            position: relative;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: #0a0a0f;
-            position: relative;
-        }
-
-        .btn-whatsapp:hover {
-            background: #20bf5a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .community-perks {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .community-perks span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .papagali-visual {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            background: var(--bg-elev);
+            border-radius: 24px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            justify-content: center;
+            border: 1px solid var(--border);
+            font-size: 4rem;
+            user-select: none;
         }
 
-        .community-perks span::before {
-            content: '✓';
-            color: #25d366;
-            font-weight: 700;
+        .papagali-attributes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        /* Bio streaming animation */
-        .ee-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: var(--accent-2);
-            vertical-align: text-bottom;
-            margin-left: 1px;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .ee-error {
-            display: none;
-            margin-top: 1.75rem;
-            padding: 0.45rem 0.75rem;
-            background: rgba(248,81,73,0.1);
-            border: 1px solid rgba(248,81,73,0.25);
-            border-radius: 6px;
-            color: #f85149;
-            font-size: 0.78rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .ee-error.visible { display: block; }
-
-        /* Newsletter */
-        .newsletter-section {
-            background: var(--bg);
-        }
-
-        .newsletter-box {
-            max-width: 640px;
-            margin: 0 auto;
+        .papagali-attr {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            border-radius: 14px;
+            padding: 1.25rem;
         }
 
-        .newsletter-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 217, 178, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .newsletter-box h3 {
-            font-size: 1.75rem;
-            margin-bottom: 0.75rem;
-            position: relative;
-        }
-
-        .newsletter-box p {
+        .papagali-attr-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
-            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
         }
 
-        .newsletter-form {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 480px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.9rem 1.25rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
+        .papagali-attr-value {
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--text);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.2s;
         }
 
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--accent);
+        @media (max-width: 768px) {
+            .papagali-hero-card {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+            }
+            .papagali-visual { display: none; }
+            .papagali-attributes {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
-        .newsletter-form input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .newsletter-perks {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .newsletter-perks span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .newsletter-perks span::before {
-            content: '✓';
-            color: var(--accent-2);
-            font-weight: 700;
-        }
-
-        .newsletter-msg {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--accent-2);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .newsletter-msg.visible {
-            opacity: 1;
+        @media (max-width: 480px) {
+            .papagali-attributes {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Footer */
@@ -1136,6 +1581,7 @@
             gap: 2rem;
             margin: 1.5rem 0;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -1199,6 +1645,7 @@
                 -webkit-backdrop-filter: blur(12px);
                 border-bottom: 1px solid var(--border);
                 flex-direction: column;
+                align-items: stretch;
                 gap: 0;
                 padding: 1rem 0;
                 z-index: 99;
@@ -1221,6 +1668,45 @@
             .nav-links li:last-child a.nav-cta {
                 display: block;
                 text-align: center;
+            }
+
+            /* Mobile dropdown */
+            .nav-item:hover .nav-dropdown {
+                display: none;
+            }
+
+            .nav-item.open .nav-dropdown {
+                display: block;
+            }
+
+            .nav-dropdown {
+                position: static;
+                transform: none;
+                background: transparent;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
+                min-width: 0;
+            }
+
+            .nav-dropdown::before {
+                display: none;
+            }
+
+            .nav-item .nav-dropdown a {
+                padding: 0.65rem 2rem 0.65rem 3rem;
+                font-size: 0.95rem;
+                border-radius: 0;
+                color: var(--text-muted);
+            }
+
+            .nav-dropdown-toggle {
+                display: flex;
+                width: 100%;
+                padding: 0.85rem 2rem;
+                font-size: 1rem;
+                justify-content: space-between;
             }
 
             .meetup-card {
@@ -1251,12 +1737,48 @@
             </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#meetups">Meetups</a></li>
-                <li><a href="#clube-do-livro">Clube do Livro</a></li>
-                <li><a href="#flashcards">Flashcards</a></li>
-                <li><a href="#comunidade">Comunidade</a></li>
-                <li><a href="#newsletter">Newsletter</a></li>
-                <li><a href="#comunidade" class="nav-cta">Entre no grupo</a></li>
+
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Comunidade
+                        <svg class="chevron" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#meetups">Meetups</a>
+                        <a href="#clube-do-livro">Clube do Livro</a>
+                        <a href="#grupos">Grupos</a>
+                        <a href="#newsletter">Newsletter</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Educação
+                        <svg class="chevron" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#cursos">Cursos</a>
+                        <a href="#flashcards">Flashcards</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        P&amp;D
+                        <svg class="chevron" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/>
+                        </svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#papagali">papagali.ai</a>
+                    </div>
+                </li>
+
+                <li><a href="#grupos" class="nav-cta">Entre no grupo</a></li>
             </ul>
         </div>
     </nav>
@@ -1265,19 +1787,19 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-tag">
-                    <span>●</span> Comunidade aberta para 2026
+                    <span>●</span> Comunidade · Educação · P&amp;D
                 </div>
                 <h1>
-                    Aprenda <span class="gradient-text">IA e Agentes</span><br>
-                    em comunidade
+                    <span class="gradient-text">Comunidade, cursos</span><br>
+                    e pesquisa em IA
                 </h1>
                 <p class="hero-subtitle">
-                    Meetups, clube do livro e uma comunidade ativa de pessoas construindo
-                    com IA. Aprenda junto com quem já está colocando agentes em produção.
+                    Aprenda IA em comunidade, desenvolva habilidades reais com cursos práticos
+                    e acompanhe projetos de pesquisa aplicada — tudo em português.
                 </p>
                 <div class="hero-actions">
-                    <a href="#comunidade" class="btn btn-primary">Entrar na comunidade →</a>
-                    <a href="#meetups" class="btn btn-secondary">Próximos meetups</a>
+                    <a href="#grupos" class="btn btn-primary">Entrar na comunidade →</a>
+                    <a href="#cursos" class="btn btn-secondary">Ver cursos</a>
                 </div>
             </div>
         </div>
@@ -1315,9 +1837,44 @@
                     </div>
                 </div>
                 <p class="sobre-texto">
-                    <strong>ninout</strong> representa <span class="t-in">N entradas</span> que, ao passarem por um processo, geram <span class="t-out">saídas</span>. O <span class="t-in">IN</span> são as ideias e dados brutos que chegam. O <span class="t-out">OUT</span> são os resultados e novas ideias que emergem dessa transformação — o ciclo do aprendizado real.
+                    <strong>ninout</strong> representa <span class="t-in">N entradas</span> que, ao passarem por um processo, geram <span class="t-out">saídas</span>. Somos uma plataforma brasileira de aprendizado em IA organizada em três pilares: <strong>comunidade</strong>, <strong>educação</strong> e <strong>pesquisa e desenvolvimento</strong>.
                 </p>
             </div>
+
+            <div class="sobre-pillars">
+                <div class="pillar-card">
+                    <span class="pillar-icon">🤝</span>
+                    <div class="pillar-name">Pilar 01</div>
+                    <h3>Comunidade</h3>
+                    <p>Espaços de encontro e troca para quem está aprendendo e construindo com IA no Brasil.</p>
+                    <div class="pillar-items">
+                        <span class="pillar-item">Meetups</span>
+                        <span class="pillar-item">Clube do Livro</span>
+                        <span class="pillar-item">Grupos WhatsApp</span>
+                        <span class="pillar-item">Newsletter</span>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <span class="pillar-icon">📚</span>
+                    <div class="pillar-name">Pilar 02</div>
+                    <h3>Educação</h3>
+                    <p>Cursos práticos e materiais de estudo para desenvolver habilidades reais com LLMs e agentes.</p>
+                    <div class="pillar-items">
+                        <span class="pillar-item">Cursos</span>
+                        <span class="pillar-item">Flashcards</span>
+                    </div>
+                </div>
+                <div class="pillar-card">
+                    <span class="pillar-icon">🔬</span>
+                    <div class="pillar-name">Pilar 03</div>
+                    <h3>P&amp;D</h3>
+                    <p>Projetos de pesquisa e desenvolvimento que exploram novas fronteiras com IA aplicada.</p>
+                    <div class="pillar-items">
+                        <span class="pillar-item">papagali.ai</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="sobre-instructor">
                 <img
                     class="sobre-instructor-photo"
@@ -1356,7 +1913,7 @@
     <section id="meetups" class="meetups">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// meetups</div>
+                <div class="section-label">// comunidade</div>
                 <h2>Encontros da comunidade</h2>
                 <p class="section-subtitle">
                     Eventos gratuitos com especialistas, estudos de caso e troca entre praticantes de IA.
@@ -1371,7 +1928,7 @@
     <section id="clube-do-livro" class="clube-livro">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// clube do livro</div>
+                <div class="section-label">// comunidade</div>
                 <h2>Clube do Livro</h2>
                 <p class="section-subtitle">
                     Leituras em grupo para aprofundar a teoria por trás dos sistemas de IA modernos.
@@ -1392,22 +1949,7 @@
         </div>
     </section>
 
-    <section id="flashcards" class="flashcards">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// flashcards</div>
-                <h2>Decks para a comunidade</h2>
-                <p class="section-subtitle">
-                    Decks de Anki com os conceitos mais importantes de IA e agentes, disponibilizados gratuitamente para a comunidade.
-                </p>
-            </div>
-            <div class="flashcards-grid" id="flashcardsGrid">
-                <p class="flashcards-status" id="flashcardsStatus">Carregando decks…</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="comunidade" class="community">
+    <section id="grupos" class="community">
         <div class="container">
             <div class="section-header">
                 <div class="section-label">// comunidade</div>
@@ -1422,7 +1964,7 @@
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
                     </svg>
                 </div>
-                <h3>Grupo ninout no WhatsApp</h3>
+                <h3>Grupos ninout</h3>
                 <p>Converse com outros aprendizes e praticantes, compartilhe projetos, receba recomendações de conteúdo e avisos exclusivos.</p>
                 <a href="https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1442,7 +1984,7 @@
     <section id="newsletter" class="newsletter-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">// newsletter</div>
+                <div class="section-label">// comunidade</div>
                 <h2>Fique por dentro</h2>
                 <p class="section-subtitle">
                     Uma curadoria semanal sobre IA, agentes e novas ferramentas — sem ruído, sem hype e sem gente emocionada. Sua fonte de informação atualizada para não sentir FOMO.
@@ -1465,31 +2007,134 @@
         </div>
     </section>
 
+    <section id="cursos" class="cursos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// educação</div>
+                <h2>Cursos</h2>
+                <p class="section-subtitle">
+                    Cursos práticos e estruturados para você dominar IA e agentes — do zero ao produção.
+                </p>
+            </div>
+            <div class="cursos-grid" id="cursosGrid">
+                <p class="cursos-status" id="cursosStatus">Carregando cursos…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="flashcards" class="flashcards">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// educação</div>
+                <h2>Decks para a comunidade</h2>
+                <p class="section-subtitle">
+                    Decks de Anki com os conceitos mais importantes de IA e agentes, disponibilizados gratuitamente para a comunidade.
+                </p>
+            </div>
+            <div class="flashcards-grid" id="flashcardsGrid">
+                <p class="flashcards-status" id="flashcardsStatus">Carregando decks…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="papagali" class="papagali">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// pesquisa e desenvolvimento</div>
+                <h2>P&amp;D</h2>
+                <p class="section-subtitle">
+                    Projetos de pesquisa aplicada que nascem dentro da comunidade ninout.
+                </p>
+            </div>
+            <div class="papagali-inner">
+                <div class="papagali-hero-card">
+                    <div>
+                        <div class="papagali-label">Primeiro projeto</div>
+                        <h3 class="papagali-title">papagali.ai</h3>
+                        <p class="papagali-desc">
+                            Um projeto de pesquisa e desenvolvimento sobre como LLMs processam, recuperam e alucinam informação em contextos de língua portuguesa. Ainda em fase de definição — os primeiros resultados serão compartilhados com a comunidade.
+                        </p>
+                        <span class="papagali-status-tag">Em desenvolvimento</span>
+                    </div>
+                    <div class="papagali-visual" aria-hidden="true">🦜</div>
+                </div>
+                <div class="papagali-attributes">
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Foco</div>
+                        <div class="papagali-attr-value">LLMs em Português</div>
+                    </div>
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Fase</div>
+                        <div class="papagali-attr-value">Pesquisa inicial</div>
+                    </div>
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Resultados</div>
+                        <div class="papagali-attr-value">Em breve</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <a href="#" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
             <ul class="footer-links">
                 <li><a href="#meetups">Meetups</a></li>
                 <li><a href="#clube-do-livro">Clube do Livro</a></li>
-                <li><a href="#flashcards">Flashcards</a></li>
-                <li><a href="#comunidade">Comunidade</a></li>
+                <li><a href="#grupos">Grupos</a></li>
                 <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#flashcards">Flashcards</a></li>
+                <li><a href="#papagali">P&amp;D</a></li>
             </ul>
-            <p>© 2026 ninout · Treinamentos em IA e Agentes</p>
+            <p>© 2026 ninout · Comunidade, Educação e P&amp;D em IA</p>
         </div>
     </footer>
 
     <script>
+        // Hamburger
         const hamburger = document.getElementById('navHamburger');
-        const navLinks = document.getElementById('navLinks');
+        const navLinksEl = document.getElementById('navLinks');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('open');
-            navLinks.classList.toggle('open');
+            navLinksEl.classList.toggle('open');
         });
-        navLinks.querySelectorAll('a').forEach(a => {
+
+        // Close mobile nav when a leaf link is clicked
+        navLinksEl.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => {
                 hamburger.classList.remove('open');
-                navLinks.classList.remove('open');
+                navLinksEl.classList.remove('open');
+            });
+        });
+
+        // Dropdown toggles (click-based for both desktop and mobile)
+        document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const parentLi = btn.closest('.nav-item');
+                const isOpen = parentLi.classList.contains('open');
+
+                // Close all other open dropdowns
+                document.querySelectorAll('.nav-item.open').forEach(li => {
+                    if (li !== parentLi) {
+                        li.classList.remove('open');
+                        li.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                parentLi.classList.toggle('open', !isOpen);
+                btn.setAttribute('aria-expanded', String(!isOpen));
+                e.stopPropagation();
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.nav-item.open').forEach(li => {
+                li.classList.remove('open');
+                li.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
             });
         });
 
@@ -1595,6 +2240,59 @@
         }
 
         loadFlashcards();
+
+        function renderCurso(c) {
+            const statusClass = c.status === 'disponivel' ? 'badge-disponivel' : 'badge-em-desenvolvimento';
+            const statusLabel = c.status === 'disponivel' ? 'Disponível' : 'Em desenvolvimento';
+            const icon = c.icon
+                ? `<img class="curso-icon" src="${escapeHtml(c.icon)}" alt="${escapeHtml(c.title)}" loading="lazy">`
+                : '';
+            const instructorBlock = c.instructor
+                ? `<div class="curso-instructor">
+                       <img class="curso-instructor-photo" src="${escapeHtml(c.instructor.photo)}" alt="${escapeHtml(c.instructor.name)}" loading="lazy">
+                       <span class="curso-instructor-name">${escapeHtml(c.instructor.name)}</span>
+                   </div>`
+                : '';
+            return `
+                <div class="curso-card">
+                    <div class="curso-card-header">
+                        ${icon}
+                        <div>
+                            <div class="curso-title">${escapeHtml(c.title)}</div>
+                            <span class="curso-badge ${statusClass}">${statusLabel}</span>
+                        </div>
+                    </div>
+                    <p class="curso-description">${escapeHtml(c.description)}</p>
+                    <div class="curso-meta">
+                        <span>⏱ ${escapeHtml(String(c.hours))}h</span>
+                        <span>📦 ${escapeHtml(String(c.modules))} módulos</span>
+                        <span>🖥 ${escapeHtml(c.format)}</span>
+                        <span>● ${escapeHtml(c.level)}</span>
+                    </div>
+                    ${instructorBlock}
+                </div>
+            `;
+        }
+
+        async function loadCursos() {
+            const grid = document.getElementById('cursosGrid');
+            const status = document.getElementById('cursosStatus');
+            try {
+                const res = await fetch('cursos.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const cursos = await res.json();
+                if (!Array.isArray(cursos) || cursos.length === 0) {
+                    status.textContent = 'Nenhum curso disponível no momento.';
+                    return;
+                }
+                grid.innerHTML = cursos.map(renderCurso).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os cursos.';
+                console.error(err);
+            }
+        }
+
+        loadCursos();
 
         // Bio streaming animation
         (function () {
