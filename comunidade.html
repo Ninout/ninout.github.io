@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidade — ninout</title>
+    <meta name="description" content="Meetups, Clube do Livro, grupos no WhatsApp, newsletter e flashcards da comunidade ninout de IA.">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item active">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Comunidade
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#meetups">Meetups</a>
+                        <a href="#clube-do-livro">Clube do Livro</a>
+                        <a href="#grupos">Grupos</a>
+                        <a href="#newsletter">Newsletter</a>
+                        <a href="#flashcards">Flashcards</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Educação
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="educacao.html#cursos">Cursos</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        P&amp;D
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="pd.html#papagali">papagali.ai</a>
+                    </div>
+                </li>
+                <li><a href="#grupos" class="nav-cta">Entre no grupo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-label">// pilar 01</div>
+            <h1><span class="gradient-text">Comunidade</span></h1>
+            <p class="page-hero-subtitle">
+                Espaços de encontro e troca para quem está aprendendo e construindo com IA no Brasil.
+            </p>
+        </div>
+    </section>
+
+    <section id="meetups" class="meetups">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// meetups</div>
+                <h2>Encontros da comunidade</h2>
+                <p class="section-subtitle">
+                    Eventos gratuitos com especialistas, estudos de caso e troca entre praticantes de IA.
+                </p>
+            </div>
+            <div class="meetups-list" id="meetupsList">
+                <p class="meetups-status" id="meetupsStatus">Carregando meetups…</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="clube-do-livro" class="clube-livro">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// clube do livro</div>
+                <h2>Clube do Livro</h2>
+                <p class="section-subtitle">
+                    Leituras em grupo para aprofundar a teoria por trás dos sistemas de IA modernos.
+                </p>
+            </div>
+            <div class="livro-card">
+                <img class="livro-cover" src="https://m.media-amazon.com/images/I/81ohse7798L._SY425_.jpg" alt="Capa do livro Engenharia de IA">
+                <div class="livro-info">
+                    <div class="livro-badge">Leitura atual</div>
+                    <h3>Engenharia de IA: Construindo Aplicações com Modelos de Fundação</h3>
+                    <p>Uma leitura essencial para quem quer entender como construir aplicações robustas em cima de LLMs e outros modelos de fundação — desde arquiteturas de prompts até sistemas em produção.</p>
+                    <div class="livro-meta">
+                        <span>▸ 4 de maio — 1 de junho</span>
+                        <span>◷ Discussões às segundas · 20h00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="grupos" class="community">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// grupos</div>
+                <h2>Entre na nossa comunidade</h2>
+                <p class="section-subtitle">
+                    Grupo no WhatsApp para trocar experiências, tirar dúvidas e receber avisos de meetups em primeira mão.
+                </p>
+            </div>
+            <div class="community-box">
+                <div class="community-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                </div>
+                <h3>Grupos ninout</h3>
+                <p>Converse com outros aprendizes e praticantes, compartilhe projetos, receba recomendações de conteúdo e avisos exclusivos.</p>
+                <a href="https://chat.whatsapp.com/XXXXXXXXXXXXXXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                    </svg>
+                    Entrar no grupo do WhatsApp
+                </a>
+                <div class="community-perks">
+                    <span>Comunidade ativa</span>
+                    <span>Sem spam</span>
+                    <span>Moderação presente</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// newsletter</div>
+                <h2>Fique por dentro</h2>
+                <p class="section-subtitle">
+                    Uma curadoria semanal sobre IA, agentes e novas ferramentas — sem ruído, sem hype e sem gente emocionada.
+                </p>
+            </div>
+            <div class="newsletter-box">
+                <h3>Receba a ninout semanal</h3>
+                <p>Papers, ferramentas, e práticas do mundo real entregues toda quarta-feira.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="seu@email.com" required>
+                    <button type="submit" class="btn btn-primary">Inscrever</button>
+                </form>
+                <div class="newsletter-msg" id="newsletterMsg">✓ Pronto! Confira sua caixa de entrada.</div>
+                <div class="newsletter-perks">
+                    <span>Conteúdo original</span>
+                    <span>Sem spam</span>
+                    <span>Cancele quando quiser</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flashcards" class="flashcards">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// flashcards</div>
+                <h2>Decks para a comunidade</h2>
+                <p class="section-subtitle">
+                    Decks de Anki com os conceitos mais importantes de IA e agentes, disponibilizados gratuitamente para a comunidade.
+                </p>
+            </div>
+            <div class="flashcards-grid" id="flashcardsGrid">
+                <p class="flashcards-status" id="flashcardsStatus">Carregando decks…</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <ul class="footer-links">
+                <li><a href="#meetups">Meetups</a></li>
+                <li><a href="#clube-do-livro">Clube do Livro</a></li>
+                <li><a href="#grupos">Grupos</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+                <li><a href="#flashcards">Flashcards</a></li>
+                <li><a href="educacao.html#cursos">Cursos</a></li>
+                <li><a href="pd.html#papagali">P&amp;D</a></li>
+            </ul>
+            <p>© 2026 ninout · Comunidade, Educação e P&amp;D em IA</p>
+        </div>
+    </footer>
+
+    <script src="nav.js" defer></script>
+    <script>
+        const form = document.getElementById('newsletterForm');
+        const msg  = document.getElementById('newsletterMsg');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            msg.classList.add('visible');
+            form.reset();
+            setTimeout(() => msg.classList.remove('visible'), 4000);
+        });
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        const MONTHS_PT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+
+        function renderMeetup(m) {
+            const d = new Date(m.date);
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = MONTHS_PT[d.getMonth()];
+            const time = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            const modeClass = m.mode === 'online' ? 'badge-online' : 'badge-presencial';
+            const modeLabel = m.mode === 'online' ? 'Online' : 'Presencial';
+            return `
+                <div class="meetup-card">
+                    <div class="meetup-date">
+                        <span class="day">${day}</span>
+                        <span class="month">${escapeHtml(month)}</span>
+                    </div>
+                    <div class="meetup-info">
+                        <h3>${escapeHtml(m.title)}</h3>
+                        <p>${escapeHtml(m.description)}</p>
+                        <div class="meta mono">${escapeHtml(time)} · ${escapeHtml(m.location)}</div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end">
+                        <span class="meetup-badge ${modeClass}">${modeLabel}</span>
+                        <span class="meetup-badge badge-gratuito">Gratuito</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadMeetups() {
+            const list = document.getElementById('meetupsList');
+            const status = document.getElementById('meetupsStatus');
+            try {
+                const res = await fetch('meetups.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const meetups = await res.json();
+                if (!Array.isArray(meetups) || meetups.length === 0) {
+                    status.textContent = 'Nenhum meetup agendado no momento.';
+                    return;
+                }
+                meetups.sort((a, b) => new Date(a.date) - new Date(b.date));
+                list.innerHTML = meetups.map(renderMeetup).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os meetups.';
+                console.error(err);
+            }
+        }
+
+        function renderDeck(d) {
+            const tags = (d.tags || []).map(t => `<span class="flashcard-tag">${escapeHtml(t)}</span>`).join('');
+            const tagsBlock = tags ? `<div class="flashcard-deck-tags">${tags}</div>` : '';
+            const action = d.download
+                ? `<a href="${escapeHtml(d.download)}" class="flashcard-download" target="_blank" rel="noopener noreferrer">↓ Baixar deck</a>`
+                : `<span class="flashcard-download-soon">em breve</span>`;
+            return `
+                <div class="flashcard-deck">
+                    ${tagsBlock}
+                    <h3>${escapeHtml(d.title)}</h3>
+                    <p>${escapeHtml(d.description)}</p>
+                    <div class="flashcard-deck-footer">
+                        <span class="flashcard-count"><strong>${escapeHtml(String(d.cards))}</strong> cards</span>
+                        ${action}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadFlashcards() {
+            const grid = document.getElementById('flashcardsGrid');
+            const status = document.getElementById('flashcardsStatus');
+            try {
+                const res = await fetch('flashcards.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const decks = await res.json();
+                if (!Array.isArray(decks) || decks.length === 0) {
+                    status.textContent = 'Nenhum deck disponível no momento.';
+                    return;
+                }
+                grid.innerHTML = decks.map(renderDeck).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os decks.';
+                console.error(err);
+            }
+        }
+
+        loadMeetups();
+        loadFlashcards();
+    </script>
+</body>
+</html>

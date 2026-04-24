@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P&D — ninout</title>
+    <meta name="description" content="Projetos de pesquisa e desenvolvimento em IA aplicada da ninout. Primeiro projeto: papagali.ai.">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Comunidade
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="comunidade.html#meetups">Meetups</a>
+                        <a href="comunidade.html#clube-do-livro">Clube do Livro</a>
+                        <a href="comunidade.html#grupos">Grupos</a>
+                        <a href="comunidade.html#newsletter">Newsletter</a>
+                        <a href="comunidade.html#flashcards">Flashcards</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Educação
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="educacao.html#cursos">Cursos</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        P&amp;D
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#papagali">papagali.ai</a>
+                    </div>
+                </li>
+                <li><a href="comunidade.html#grupos" class="nav-cta">Entre no grupo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-label">// pilar 03</div>
+            <h1><span class="gradient-text">P&amp;D</span></h1>
+            <p class="page-hero-subtitle">
+                Projetos de pesquisa e desenvolvimento que exploram novas fronteiras com IA aplicada.
+            </p>
+        </div>
+    </section>
+
+    <section id="papagali" class="papagali">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// primeiro projeto</div>
+                <h2>papagali.ai</h2>
+                <p class="section-subtitle">
+                    Pesquisa aplicada sobre LLMs em língua portuguesa — desenvolvida dentro da comunidade ninout.
+                </p>
+            </div>
+            <div class="papagali-inner">
+                <div class="papagali-hero-card">
+                    <div>
+                        <div class="papagali-label">Primeiro projeto</div>
+                        <h3 class="papagali-title">papagali.ai</h3>
+                        <p class="papagali-desc">
+                            Um projeto de pesquisa e desenvolvimento sobre como LLMs processam, recuperam e alucinam informação em contextos de língua portuguesa. Ainda em fase de definição — os primeiros resultados serão compartilhados com a comunidade.
+                        </p>
+                        <span class="papagali-status-tag">Em desenvolvimento</span>
+                    </div>
+                    <div class="papagali-visual" aria-hidden="true">🦜</div>
+                </div>
+                <div class="papagali-attributes">
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Foco</div>
+                        <div class="papagali-attr-value">LLMs em Português</div>
+                    </div>
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Fase</div>
+                        <div class="papagali-attr-value">Pesquisa inicial</div>
+                    </div>
+                    <div class="papagali-attr">
+                        <div class="papagali-attr-label">Resultados</div>
+                        <div class="papagali-attr-value">Em breve</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <ul class="footer-links">
+                <li><a href="comunidade.html#meetups">Meetups</a></li>
+                <li><a href="comunidade.html#clube-do-livro">Clube do Livro</a></li>
+                <li><a href="comunidade.html#grupos">Grupos</a></li>
+                <li><a href="comunidade.html#newsletter">Newsletter</a></li>
+                <li><a href="comunidade.html#flashcards">Flashcards</a></li>
+                <li><a href="educacao.html#cursos">Cursos</a></li>
+                <li><a href="#papagali">P&amp;D</a></li>
+            </ul>
+            <p>© 2026 ninout · Comunidade, Educação e P&amp;D em IA</p>
+        </div>
+    </footer>
+
+    <script src="nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educação — ninout</title>
+    <meta name="description" content="Cursos práticos e estruturados para dominar IA e agentes — do zero ao produção.">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Comunidade
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="comunidade.html#meetups">Meetups</a>
+                        <a href="comunidade.html#clube-do-livro">Clube do Livro</a>
+                        <a href="comunidade.html#grupos">Grupos</a>
+                        <a href="comunidade.html#newsletter">Newsletter</a>
+                        <a href="comunidade.html#flashcards">Flashcards</a>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        Educação
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="#cursos">Cursos</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-dropdown-toggle" aria-expanded="false">
+                        P&amp;D
+                        <svg class="chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="nav-dropdown">
+                        <a href="pd.html#papagali">papagali.ai</a>
+                    </div>
+                </li>
+                <li><a href="comunidade.html#grupos" class="nav-cta">Entre no grupo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-label">// pilar 02</div>
+            <h1><span class="gradient-text">Educação</span></h1>
+            <p class="page-hero-subtitle">
+                Cursos práticos e estruturados para você dominar IA e agentes — do zero ao produção.
+            </p>
+        </div>
+    </section>
+
+    <section id="cursos" class="cursos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">// cursos</div>
+                <h2>Cursos disponíveis</h2>
+                <p class="section-subtitle">
+                    Aprenda com quem está colocando agentes em produção — conteúdo direto ao ponto, sem enrolação.
+                </p>
+            </div>
+            <div class="cursos-grid" id="cursosGrid">
+                <p class="cursos-status" id="cursosStatus">Carregando cursos…</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.svg" alt="ninout logo">ninout</a>
+            <ul class="footer-links">
+                <li><a href="comunidade.html#meetups">Meetups</a></li>
+                <li><a href="comunidade.html#clube-do-livro">Clube do Livro</a></li>
+                <li><a href="comunidade.html#grupos">Grupos</a></li>
+                <li><a href="comunidade.html#newsletter">Newsletter</a></li>
+                <li><a href="comunidade.html#flashcards">Flashcards</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="pd.html#papagali">P&amp;D</a></li>
+            </ul>
+            <p>© 2026 ninout · Comunidade, Educação e P&amp;D em IA</p>
+        </div>
+    </footer>
+
+    <script src="nav.js" defer></script>
+    <script>
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function renderCurso(c) {
+            const statusClass = c.status === 'disponivel' ? 'badge-disponivel' : 'badge-em-desenvolvimento';
+            const statusLabel = c.status === 'disponivel' ? 'Disponível' : 'Em desenvolvimento';
+            const icon = c.icon ? `<img class="curso-icon" src="${escapeHtml(c.icon)}" alt="${escapeHtml(c.title)}" loading="lazy">` : '';
+            const instructor = c.instructor
+                ? `<div class="curso-instructor">
+                       <img class="curso-instructor-photo" src="${escapeHtml(c.instructor.photo)}" alt="${escapeHtml(c.instructor.name)}" loading="lazy">
+                       <span class="curso-instructor-name">${escapeHtml(c.instructor.name)}</span>
+                   </div>`
+                : '';
+            return `
+                <div class="curso-card">
+                    <div class="curso-card-header">
+                        ${icon}
+                        <div>
+                            <div class="curso-title">${escapeHtml(c.title)}</div>
+                            <span class="curso-badge ${statusClass}">${statusLabel}</span>
+                        </div>
+                    </div>
+                    <p class="curso-description">${escapeHtml(c.description)}</p>
+                    <div class="curso-meta">
+                        <span>⏱ ${escapeHtml(String(c.hours))}h</span>
+                        <span>📦 ${escapeHtml(String(c.modules))} módulos</span>
+                        <span>🖥 ${escapeHtml(c.format)}</span>
+                        <span>● ${escapeHtml(c.level)}</span>
+                    </div>
+                    ${instructor}
+                </div>
+            `;
+        }
+
+        async function loadCursos() {
+            const grid = document.getElementById('cursosGrid');
+            const status = document.getElementById('cursosStatus');
+            try {
+                const res = await fetch('cursos.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const cursos = await res.json();
+                if (!Array.isArray(cursos) || cursos.length === 0) {
+                    status.textContent = 'Nenhum curso disponível no momento.';
+                    return;
+                }
+                grid.innerHTML = cursos.map(renderCurso).join('');
+            } catch (err) {
+                status.textContent = 'Não foi possível carregar os cursos.';
+                console.error(err);
+            }
+        }
+
+        loadCursos();
+    </script>
+</body>
+</html>
